@@ -1,29 +1,50 @@
 import React, { Component } from 'react';
 
+const key = "793c3779a280f8d4077e1cd9c08b8a21"
+const URL = api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
 
-class Location extends Component {
+class Location extends Component <{}, FetchState> {
+  constructor(props:{}) {
+    super(props);
+      this.state = {
+          name:"",
+          temp: 0
+      }
+  }
+}
   constructor(props) {
     super(props);
     this.state = {
 
     };
   }
+youAreHere() {
+  navigator.geolocation.getCurrentPosition(function(locate) {
+    console.log('Lat is:', pos.locate);
+    console.log('Lon is:', pos.locate);
+    
+    this.setState({
+      lon: locate.coords.longitude,
+      lat: locate.coords.latitude
+    });
+    fetch(`api.openweathermap.org/data/2.5/weather?lat=${this.state.lat}&lon=${this.state.lon}&appid=${key}`)
+      .then(res => res.json())
+        .then(data => {this.setState({weather: data.weather.description, temp: data.main.temp, name: data.name })})
+          .catch(conslole.log)
+    });
+}
 
   componentDidMount() {
-    navigator.geolocation.getCurrentPosition(function(locate) {
-      console.log('Lat is:', position.coords.latitude);
-      console.log('Lon is:', position.coords.longitude );
-    } );
+   this.locate()
   }
-  render() {
+  render(){
     return(
       <div>
         <h3>Get Location!</h3>
       </div>
-    )
-  }
-}
-
+      )
+    }
+  
 export default Location;
 
 /*

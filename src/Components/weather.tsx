@@ -1,19 +1,15 @@
 import React, { useState } from 'react';
 
 
-// const key = 793c3779a280f8d4077e1cd9c08b8a21;
+const key = 793c3779a280f8d4077e1cd9c08b8a21;
 
 //Sample API Call:
 // api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
+export default class Weather extends React.Component<{}> {
+  constructor();
 
-const weather = (getWeather, WeatherData) => { 
-  const []
-  return (
-    <div>
-      
-    </div>
-  )
 }
+
 
 export default weather;
 
